@@ -9,12 +9,13 @@ class NewsAppLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (BuildContext context) => NewCubit(),
+        create: (BuildContext context) => NewCubit()..getBusiness(),
         child: BlocConsumer<NewCubit, NewsStates>(
           listener: (context, state) {},
           builder: (context, state) {
             var cubit = NewCubit.get(context);
             return Scaffold(
+
               appBar: AppBar(
                 title: const Text(
                   'News App',
