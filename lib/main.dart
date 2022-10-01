@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:newsapp/Network/remote/dio_helper.dart';
 
 import 'layout/layout.dart';
 
 void main() {
   runApp(const MyApp());
+  DioHelper.init();
 }
 
 class MyApp extends StatelessWidget {
@@ -14,8 +16,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+       floatingActionButtonTheme: FloatingActionButtonThemeData(
+         backgroundColor: Colors.red
+       ),
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           iconTheme: IconThemeData(
@@ -31,7 +37,7 @@ class MyApp extends StatelessWidget {
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             type: BottomNavigationBarType.fixed,
-            selectedItemColor: Colors.redAccent,
+            selectedItemColor: Colors.red,
             elevation: 20),
       ),
       home: NewsAppLayout(),
