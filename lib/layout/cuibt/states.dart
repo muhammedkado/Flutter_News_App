@@ -6,4 +6,25 @@ class NewsBusinessErorState extends NewsStates{
   String? Eror;
   NewsBusinessErorState(this.Eror);
 }
-class NewsLodingState extends NewsStates{}
+class NewsGetBusinessLoadingState extends NewsStates{}
+
+class NewsSportsSuccessState extends NewsStates{}
+class NewsSportsErorState extends NewsStates{
+  String? Eror;
+  NewsSportsErorState(this.Eror);
+}
+class NewsSportsLoadingState extends NewsStates{}
+
+class NewsScienceSuccessState extends NewsStates{}
+class NewsScienceErorState extends NewsStates{
+  String? Eror;
+  NewsScienceErorState(this.Eror);
+}
+class NewsScienceLoadingState extends NewsStates{}
+
+class NewsHealthSuccessState extends NewsStates{}
+class NewsHealthErorState extends NewsStates{
+  String? Eror;
+  NewsHealthErorState(this.Eror);
+}
+class NewsHealthLoadingState extends NewsStates{}
