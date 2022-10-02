@@ -16,12 +16,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-       floatingActionButtonTheme: FloatingActionButtonThemeData(
-         backgroundColor: Colors.red
-       ),
+        primarySwatch: Colors.red,
+
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           iconTheme: IconThemeData(
