@@ -124,4 +124,7 @@ class NewCubit extends Cubit<NewsStates> {
       emit(NewsHealthSuccessState());
     }
   }
+
+
+
 }
