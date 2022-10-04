@@ -28,3 +28,5 @@ class NewsHealthErorState extends NewsStates{
   NewsHealthErorState(this.Eror);
 }
 class NewsHealthLoadingState extends NewsStates{}
+
+class NewsAppModeState extends NewsStates{}

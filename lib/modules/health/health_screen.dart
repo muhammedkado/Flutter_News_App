@@ -16,7 +16,7 @@ class HealthScreen extends StatelessWidget {
       listener:(context,state){} ,
       builder:(context,state){
         List? list=NewCubit.get(context).health;
-        return articleBuilder(list);
+        return articleBuilder(list,context);
       } ,
     );
   }

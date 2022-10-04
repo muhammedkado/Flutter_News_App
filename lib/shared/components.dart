@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-Widget buildArticleItem(business)=> Padding(
+Widget buildArticleItem(business,context)=> Padding(
   padding: const EdgeInsets.all(10.0),
   child: Row(
 
@@ -13,7 +13,7 @@ Widget buildArticleItem(business)=> Padding(
           borderRadius: BorderRadius.circular(10),
           image:  DecorationImage(
             image: NetworkImage(
-                '${business['urlToImage']}'),
+                '${business['urlToImage'] ??  'https://media.istockphoto.com/vectors/loading-icon-vector-illustration-vector-id1335247217?k=20&m=1335247217&s=612x612&w=0&h=CQFY4NO0j2qc6kf4rTc0wTKYWL-9w5ldu-wF8D4oUBk='}'),
             fit: BoxFit.fill,
           ),
         ),
@@ -33,10 +33,7 @@ Widget buildArticleItem(business)=> Padding(
               Expanded(
                 child: Text(
                   '${business['title']}',
-                  style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold
-                  ),
+                  style: Theme.of(context).textTheme.bodyLarge,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -56,11 +53,11 @@ Widget buildArticleItem(business)=> Padding(
     ],
   ),
 );
-Widget articleBuilder(list)=> ConditionalBuilder(
+Widget articleBuilder(list, BuildContext context)=> ConditionalBuilder(
     condition: list.length > 0,
     builder: (context)=>ListView.separated(
         physics: const BouncingScrollPhysics(),
-        itemBuilder:  (context,index)=> buildArticleItem(list[index]),
+        itemBuilder:  (context,index)=> buildArticleItem(list[index],context),
         separatorBuilder:(context,index)=>Container(color: Colors.grey,height: 1,),
         itemCount:list.length ) ,
     fallback: (context)=>const Center(child: CircularProgressIndicator())
