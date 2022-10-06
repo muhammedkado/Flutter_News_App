@@ -4,18 +4,27 @@ import 'package:newsapp/layout/cuibt/states.dart';
 import 'cuibt/cuibt.dart';
 import 'cuibt/darkmod.dart';
 
-class NewsAppLayout extends StatelessWidget {
+class NewsAppLayout extends StatefulWidget {
   const NewsAppLayout({Key? key}) : super(key: key);
 
   @override
+  State<NewsAppLayout> createState() => _NewsAppLayoutState();
+}
+
+class _NewsAppLayoutState extends State<NewsAppLayout> {
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) =>
-          NewCubit()..getBusiness(), //..getSports()..getScience()..getHealth(),
+      create: (BuildContext context) => NewCubit()
+        ..getBusiness()
+        ..getSports()
+        ..getScience()
+        ..getHealth(),
       child: BlocConsumer<NewCubit, NewsStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          var cubit = NewCubit.get(context);
+          NewCubit cubit = NewCubit.get(context);
+          DarkMode dark = DarkMode.get(context);
           return Scaffold(
             appBar: AppBar(
               title: const Text(
@@ -26,13 +35,20 @@ class NewsAppLayout extends StatelessWidget {
                   icon: const Icon(
                     Icons.search,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    print(dark.isDark);
+                  },
                 ),
                 IconButton(
-                    onPressed: () {
-                      DarkMode.get(context).ChangeMode();
-                    },
-                    icon: const Icon(Icons.light_mode))
+                  onPressed: () {
+                    setState(() {
+
+                    });
+                    dark.changeMode();
+                  },
+                  icon: Icon(
+                      dark.isDark ? Icons.wb_sunny : Icons.nightlight_round),
+                ),
               ],
             ),
             bottomNavigationBar: BottomNavigationBar(
