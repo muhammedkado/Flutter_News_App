@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
+  equatable: ^2.0.5
   shared_preferences: ^2.0.15
   hexcolor: ^3.0.1
   conditional_builder_null_safety: ^0.0.6
