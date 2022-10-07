@@ -55,6 +55,7 @@ class NewCubit extends Cubit<NewsStates> {
       }, url: 'v2/top-headlines')
           .then((value) {
         business = value.data["articles"];
+
         emit(NewsBusinessSuccessState());
       }).catchError((error) {
         emit(NewsBusinessErorState(error.toString()));
@@ -125,8 +126,21 @@ class NewCubit extends Cubit<NewsStates> {
     }
   }
 
+//https://newsapi.org/v2/everything?q=Apple&from=2022-10-06&sortBy=popularity&apiKey=API_KEY
 
+  List<dynamic> search = [];
 
+  void getSearch(String value) {
+    emit(NewsSearchLoadingState());
 
-
+    DioHelper.getData(
+      url: 'v2/everything',
+      query: {'q': "$value", 'apiKey': 'ed496afa74bb4d708ebe9b7d1ff5045b'},
+    ).then((value) {
+      search = value.data["articles"];
+      emit(NewsSearchSuccessState());
+    }).catchError((error) {
+      emit(NewsSearchErorState(error.toString()));
+    });
+  }
 }

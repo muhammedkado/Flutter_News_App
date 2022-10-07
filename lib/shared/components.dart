@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:newsapp/layout/cuibt/cuibt.dart';
-NewCubit cubit =NewCubit();
+
+NewCubit cubit = NewCubit();
 Widget buildArticleItem(business, context) => Padding(
       padding: const EdgeInsets.all(10.0),
       child: Row(
@@ -59,3 +60,6 @@ Widget articleBuilder(list, BuildContext context) => ConditionalBuilder(
             ),
         itemCount: list.length),
     fallback: (context) => const Center(child: CircularProgressIndicator()));
+
+void navigatorTo({ context, Widget}) =>
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Widget));

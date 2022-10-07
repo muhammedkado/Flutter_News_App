@@ -5,6 +5,7 @@ import 'package:newsapp/Network/remote/dio_helper.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:newsapp/layout/cuibt/darkmod.dart';
 import 'package:newsapp/layout/cuibt/states.dart';
+import 'layout/cuibt/cuibt.dart';
 import 'layout/layout.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,16 +15,29 @@ void main() async {
   await CachHelper.init();
   bool? dark = CachHelper.getData(key: 'isDark');
 
-  runApp( MyApp(dark));
- }
+  runApp(MyApp(dark));
+}
 
 class MyApp extends StatelessWidget {
   final bool? isDark;
   const MyApp(this.isDark, {super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (BuildContext context) => DarkMode()..changeMode(fromShared: isDark),
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (BuildContext context) =>DarkMode()..changeMode(
+                fromShared: isDark,
+            ),
+          ),
+          BlocProvider(
+            create: (BuildContext context) => NewCubit()
+              ..getBusiness()
+              ..getSports()
+              ..getScience()
+              ..getHealth(),
+          )
+        ],
         child: BlocConsumer<DarkMode, NewsStates>(
           listener: (context, state) {},
           builder: (context, state) => MaterialApp(
@@ -87,6 +101,7 @@ class MyApp extends StatelessWidget {
                 elevation: 20,
                 backgroundColor: HexColor('333739'),
               ),
+              primarySwatch: Colors.red,
             ),
             themeMode:
                 DarkMode.get(context).isDark ? ThemeMode.dark : ThemeMode.light,

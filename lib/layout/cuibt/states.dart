@@ -29,4 +29,13 @@ class NewsHealthErorState extends NewsStates{
 }
 class NewsHealthLoadingState extends NewsStates{}
 
+
+class NewsSearchSuccessState extends NewsStates{}
+class NewsSearchErorState extends NewsStates{
+  String? Eror;
+  NewsSearchErorState(this.Eror);
+}
+class NewsSearchLoadingState extends NewsStates{}
+
+
 class NewsAppModeState extends NewsStates{}
