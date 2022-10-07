@@ -42,6 +42,7 @@ class NewCubit extends Cubit<NewsStates> {
     ScienceScreen(),
     HealthScreen(),
   ];
+  //https://newsapi.org/v2/top-headlines?country=tr&category=business&apiKey=ed496afa74bb4d708ebe9b7d1ff5045b
 
   List<dynamic> business = [];
 

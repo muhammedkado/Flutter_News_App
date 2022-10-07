@@ -5,12 +5,13 @@ import 'package:newsapp/layout/cuibt/cuibt.dart';
 import 'package:newsapp/layout/cuibt/states.dart';
 import 'package:newsapp/shared/components.dart';
 
+
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NewCubit,NewsStates>(
+    return BlocConsumer<NewCubit, NewsStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
@@ -21,28 +22,29 @@ class SearchScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: TextFormField(
                   decoration: const InputDecoration(
-                    fillColor:Colors.white ,
-
+                    fillColor: Colors.white,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(5),
                       ),
                     ),
                     hintText: 'Search for anything',
-                    hintStyle:TextStyle(
-                      color: Colors.white,
+                    hintStyle:TextStyle(color: Colors.grey),
 
+                    label: Text(
+                      'Search',
+                      style: TextStyle(color: Colors.grey),
                     ),
-                    label: Text('Search',style: TextStyle(color: Colors.white),),
-                    suffixIcon: Icon(Icons.search),
-
+                    prefixIcon: Icon(Icons.search,textDirection: TextDirection.ltr,color: Colors.grey,),
                   ),
                   onChanged: (value) {
                     NewCubit.get(context).getSearch(value);
                   },
                 ),
               ),
-              Expanded(child: articleBuilder(NewCubit.get(context).search, context))
+              Expanded(
+                  child: articleBuilder(NewCubit.get(context).search, context,
+                      isSerach: true))
             ],
           ),
         );
